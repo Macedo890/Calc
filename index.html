@@ -4,6 +4,34 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+        <script defer src="index.js"></script>
     </head>
-    <body></body>
+    <body>
+        <input type="text" name="" id="texto" value="0" disabled />
+        <div id="calc" data-previousKeyType="">
+            <button class="btn silver" value="AC">AC</button>
+            <button class="btn silver" value="+/-">+/-</button>
+            <button class="btn silver" value="%" data-action="factore">
+                %
+            </button>
+            <button class="btn orange" value="÷" data-action="divide">÷</button>
+            <button class="btn" value="7">7</button>
+            <button class="btn" value="8">8</button>
+            <button class="btn" value="9">9</button>
+            <button class="btn orange" value="X" data-action="multi">X</button>
+            <button class="btn" value="4">4</button>
+            <button class="btn" value="5">5</button>
+            <button class="btn" value="6">6</button>
+            <button class="btn orange" value="-" data-action="sub">-</button>
+            <button class="btn" value="1">1</button>
+            <button class="btn" value="2">2</button>
+            <button class="btn" value="3">3</button>
+            <button class="btn orange" value="+" data-action="some">+</button>
+            <button class="btn" value="0">0</button>
+            <button class="btn" value="0">0</button>
+            <button class="btn" value="." data-action="decimal">.</button>
+            <button class="btn orange" value="=" data-action="equal">=</button>
+        </div>
+    </body>
 </html>

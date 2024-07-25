@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.is-depressed {
+    background-color: blue;
+}
+
+#calc {
+    display: grid;
+    grid-template-columns: 80px, 80px, 80px, 80px;
+    grid-template-rows: 80px, 80px;
+    justify-content: center;
+    grid-gap: 10px;
+    grid-template-areas:
+        'header header header header'
+        'main main main main'
+        'main main main main'
+        'main main main main'
+        'main main main main'
+        'main main main main';
+    background-color: black;
+}
+
+.btn {
+    border: 1px solid red;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
