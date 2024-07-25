@@ -58,7 +58,10 @@ buttons.forEach((button) => {
             }
 
             if (action === 'decimal') {
-                texto.value = texto.value + valor;
+                calc.dataset.previousKeyType = 'decimal';
+                if (!texto.value.includes('.')) {
+                    texto.value = texto.value + valor;
+                }
             }
 
             if (action === 'equal') {
