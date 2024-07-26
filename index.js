@@ -48,10 +48,18 @@ buttons.forEach((button) => {
             action === 'equal' ||
             action === 'decimal'
         ) {
-            button.classList.add('is-depressed');
+            if (texto.value !== '0' && texto.value !== '') {
+                button.classList.add('is-depressed');
+            }
+
             calc.dataset.previousKeyType = 'operator';
 
-            if (action !== 'equal' && action !== 'decimal') {
+            if (
+                action !== 'equal' &&
+                action !== 'decimal' &&
+                texto.value !== '0' &&
+                texto.value !== ''
+            ) {
                 operator = action;
                 numbers[0] = texto.value;
                 texto.value = '';
