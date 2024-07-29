@@ -3,35 +3,117 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Calculadora Interativa</title>
+        <!-- Link para o arquivo de estilos CSS -->
         <link rel="stylesheet" href="style.css" />
+        <!-- Script JavaScript deferido para carregar após o parsing da página -->
         <script defer src="index.js"></script>
     </head>
     <body>
-        <input type="text" name="" id="texto" value="" disabled />
-        <div id="calc" data-previousKeyType="">
-            <button class="btn silver" value="AC">AC</button>
-            <button class="btn silver" value="+/-">+/-</button>
-            <button class="btn silver" value="%" data-action="factore">
-                %
-            </button>
-            <button class="btn orange" value="/" data-value="">÷</button>
-            <button class="btn" value="7">7</button>
-            <button class="btn" value="8">8</button>
-            <button class="btn" value="9">9</button>
-            <button class="btn orange" value="*" data-value="multi">X</button>
-            <button class="btn" value="4">4</button>
-            <button class="btn" value="5">5</button>
-            <button class="btn" value="6">6</button>
-            <button class="btn orange" value="-" data-value="sub">-</button>
-            <button class="btn" value="1">1</button>
-            <button class="btn" value="2">2</button>
-            <button class="btn" value="3">3</button>
-            <button class="btn orange" value="+" data-value="some">+</button>
-            <button class="btn" value="0">0</button>
-            <button class="btn" value="0">0</button>
-            <button class="btn" value="." data-value="decimal">.</button>
-            <button class="btn orange" value="=" data-action="equal">=</button>
+        <!-- Container principal da calculadora -->
+        <div id="calculator">
+            <!-- Input de texto desabilitado para exibição de resultado -->
+            <input type="text" name="" id="display" value="" disabled />
+
+            <!-- Container secundário para controles adicionais -->
+            <div id="controls">
+                <!-- Container para os marcadores de estado -->
+                <div class="status-indicators">
+                    <div class="status-indicator"></div>
+                    <div class="status-indicator"></div>
+                    <div class="status-indicator"></div>
+                </div>
+
+                <!-- Toggle switch para modo claro/escuro -->
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span
+                        class="slider round"
+                        id="darkModeSlider"
+                        data-mode="day"
+                    ></span>
+                </label>
+            </div>
+
+            <!-- Calculadora com botões -->
+            <div id="calculator-buttons" data-previousKeyType="">
+                <!-- Botões numéricos e operadores -->
+                <button class="button clear" value="AC" tabindex="1">AC</button>
+                <button class="button clear" value="+/-" tabindex="2">
+                    +/-
+                </button>
+                <button
+                    class="button clear"
+                    value="%"
+                    data-action="factorial"
+                    tabindex="3"
+                >
+                    %
+                </button>
+                <button
+                    class="button operator"
+                    id="divide"
+                    value="/"
+                    data-value=""
+                    tabindex="4"
+                >
+                    <img src="./img/divide.svg" alt="Dividir" />
+                </button>
+                <button class="button" value="7" tabindex="5">7</button>
+                <button class="button" value="8" tabindex="6">8</button>
+                <button class="button" value="9" tabindex="7">9</button>
+                <button
+                    class="button operator"
+                    id="multiply"
+                    value="*"
+                    data-value="multi"
+                    tabindex="8"
+                >
+                    <img src="./img/multiply.svg" alt="Multiplicar" />
+                </button>
+                <button class="button" value="4" tabindex="9">4</button>
+                <button class="button" value="5" tabindex="10">5</button>
+                <button class="button" value="6" tabindex="11">6</button>
+                <button
+                    class="button operator"
+                    id="subtract"
+                    value="-"
+                    data-value="sub"
+                    tabindex="12"
+                >
+                    <img src="./img/subtract.svg" alt="Subtrair" />
+                </button>
+                <button class="button" value="1" tabindex="13">1</button>
+                <button class="button" value="2" tabindex="14">2</button>
+                <button class="button" value="3" tabindex="15">3</button>
+                <button
+                    class="button operator"
+                    id="add"
+                    value="+"
+                    data-value="add"
+                    tabindex="16"
+                >
+                    <img src="./img/add.svg" alt="Somar" />
+                </button>
+                <button class="button" value="0" tabindex="17">0</button>
+                <button
+                    class="button"
+                    value="."
+                    data-value="decimal"
+                    tabindex="18"
+                >
+                    .
+                </button>
+                <button
+                    class="button operator"
+                    id="equal"
+                    value="="
+                    data-action="equal"
+                    tabindex="19"
+                >
+                    <img src="./img/equal.svg" alt="Igual" />
+                </button>
+            </div>
         </div>
     </body>
 </html>

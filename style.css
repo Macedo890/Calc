@@ -1,15 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+@font-face {
+    font-family: 'Digital7';
+    src: url('./img/digital-7-family/digital-7.regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    background-color: #e1e3de;
+}
+
+.darkmode {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    background-color: #1a1716;
 }
 
 .is-depressed {
     background-color: blue;
 }
 
-#calc {
+#display {
+    height: 40px;
+    width: 190px;
+    font-family: 'Digital7', Courier, monospace;
+    letter-spacing: 2px;
+    font-size: larger;
+    background-color: #bbb4a1;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    border-top: 10px solid #44372e;
+    border-bottom: 20px solid #44372e;
+    border-left: 8px solid #44372e;
+    border-right: 8px solid #44372e;
+    padding: 20px;
+}
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    height: 100vh;
+}
+
+#calculator-buttons {
     display: grid;
     grid-template-columns: 80px, 80px, 80px, 80px;
     grid-template-rows: 80px, 80px;
@@ -22,12 +70,137 @@
         'main main main main'
         'main main main main'
         'main main main main';
-    background-color: black;
+}
+.button {
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 20%;
+    background-color: #bcb3a4;
+    color: #686350;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 1rem;
 }
 
-.btn {
-    border: 1px solid red;
-    height: 50px;
-    width: 50px;
-    border-radius: 50px;
+.button:active {
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2),
+        0 -2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+}
+
+.operator {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.13);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background-color: #44372e;
+}
+
+#equal {
+    background-color: hsl(0, 100%, 47%);
+}
+
+#controls {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 190px;
+    margin-bottom: 10px;
+    /* border: 1px solid red; */
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 17px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    /* transform: rotate(90deg); */
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #44372e;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    top: 3px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: hsl(0, 100%, 47%);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px hsl(0, 100%, 47%);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateY(12px);
+    -ms-transform: translateY(12px);
+    transform: translateY(12px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.status-indicators {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 1px solid blue; */
+    height: 20px;
+    margin-right: 5px;
+}
+
+.status-indicator {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: #44372e;
+    margin-right: 5px; /* Adjust as needed for spacing */
+}
+
+.status-indicator:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.status-indicator:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.status-indicator:nth-child(3) {
+    transition-delay: 0.2s;
+}
+.status-indicator.dark {
+    background-color: hsl(0, 100%, 47%);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }

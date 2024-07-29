@@ -1,93 +1,23 @@
-// let buttons = document.querySelectorAll('.btn');
-// let calc = document.querySelector('#calc');
-// let texto = document.querySelector('#texto');
+// Selecionando todos os botões da calculadora
+let calculatorButtons = document.querySelectorAll('.button');
 
-// let operator;
-// let numbers = [];
+// Selecionando o elemento de exibição da calculadora
+let displayElement = document.querySelector('#display');
 
-// function calculate(n1, operator, n2) {
-//     let result = '';
+// String para armazenar a expressão matemática
+let expression = '';
 
-//     if (operator === 'some') {
-//         result = parseFloat(n1) + parseFloat(n2);
-//     } else if (operator === 'sub') {
-//         result = parseFloat(n1) - parseFloat(n2);
-//     } else if (operator === 'multi') {
-//         result = parseFloat(n1) * parseFloat(n2);
-//     } else if (operator === 'divide') {
-//         result = parseFloat(n1) / parseFloat(n2);
-//     }
+// Selecionando o toggle switch do modo escuro
+let darkModeToggle = document.querySelector('#darkModeSlider');
 
-//     return result;
-// }
+// Selecionando o checkbox do modo escuro
+let darkModeCheckbox = document.querySelector('#darkModeToggle');
 
-// buttons.forEach((button) => {
-//     button.addEventListener('click', () => {
-//         let valor = button.value;
-//         let action = button.dataset.action;
-//         let previousKeyType = calc.dataset.previousKeyType;
+// Selecionando todos os indicadores de status
+let statusIndicators = document.querySelectorAll('.status-indicator');
 
-//         if (!action) {
-//             if (texto.value === '0') {
-//                 texto.value = valor;
-//             } else {
-//                 texto.value = texto.value + valor;
-//             }
-
-//             buttons.forEach((k) => {
-//                 k.classList.remove('is-depressed');
-//             });
-
-//             calc.dataset.previousKeyType = 'number';
-//         } else if (
-//             action === 'factore' ||
-//             action === 'divide' ||
-//             action === 'multi' ||
-//             action === 'sub' ||
-//             action === 'some' ||
-//             action === 'equal' ||
-//             action === 'decimal'
-//         ) {
-//             if (texto.value !== '0' && texto.value !== '') {
-//                 button.classList.add('is-depressed');
-//             }
-
-//             calc.dataset.previousKeyType = 'operator';
-
-//             if (
-//                 action !== 'equal' &&
-//                 action !== 'decimal' &&
-//                 texto.value !== '0' &&
-//                 texto.value !== ''
-//             ) {
-//                 operator = action;
-//                 numbers[0] = texto.value;
-//                 texto.value = '';
-//             }
-
-//             if (action === 'decimal') {
-//                 calc.dataset.previousKeyType = 'decimal';
-//                 if (!texto.value.includes('.')) {
-//                     texto.value = texto.value + valor;
-//                 }
-//             }
-
-//             if (action === 'equal') {
-//                 const secondValue = texto.value;
-//                 numbers[1] = secondValue;
-//                 texto.value = calculate(numbers[0], operator, numbers[1]);
-//                 operator = undefined;
-//             }
-//         }
-//     });
-// });
-
-let buttons = document.querySelectorAll('.btn');
-let calc = document.querySelector('#calc');
-let texto = document.querySelector('#texto');
-let core = '';
-
-function Teval(expression) {
+// Função para avaliar a expressão matemática
+function evaluateExpression(expression) {
     if (/^[\d+\-*/().\s]+$/.test(expression)) {
         try {
             let func = new Function('return ' + expression);
@@ -100,15 +30,52 @@ function Teval(expression) {
     }
 }
 
-buttons.forEach((button) => {
+// Adicionando event listeners para os botões da calculadora
+calculatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (button.dataset.action == 'equal') {
-            let re = Teval(core);
-            texto.value = re;
+        if (button.dataset.action === 'equal') {
+            let result = evaluateExpression(expression);
+            displayElement.value = result;
         } else {
-            let valor = button.textContent;
-            core += button.value;
-            texto.value += valor;
+            let value = button.textContent;
+            expression += button.value;
+            displayElement.value += value;
         }
     });
+});
+
+// Adicionando event listener para o toggle switch do modo escuro
+darkModeToggle.addEventListener('click', () => {
+    if (darkModeToggle.dataset.mode === 'day') {
+        darkModeToggle.dataset.mode = 'night';
+        document.body.classList.add('darkmode');
+        statusIndicators.forEach((indicator) => {
+            indicator.classList.add('dark');
+        });
+        console.log('Modo escuro ativado');
+    } else {
+        darkModeToggle.dataset.mode = 'day';
+        document.body.classList.remove('darkmode');
+        statusIndicators.forEach((indicator) => {
+            indicator.classList.remove('dark');
+        });
+        console.log('Modo escuro desativado');
+    }
+});
+
+// Verifica o modo preferido pelo sistema ao carregar a página
+document.addEventListener('DOMContentLoaded', function () {
+    const prefersDarkMode = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+    ).matches;
+
+    if (prefersDarkMode) {
+        darkModeToggle.dataset.mode = 'night';
+        darkModeCheckbox.checked = true;
+        document.body.classList.add('darkmode');
+        statusIndicators.forEach((indicator) => {
+            indicator.classList.add('dark');
+        });
+        console.log('Preferência de modo escuro do sistema detectada');
+    }
 });
