@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Interactive Calculator</title>
+        <link rel="stylesheet" href="../src/styles/style.css" />
+        <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="./assets/icons/apple-touch-icon-180x180.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="./assets/icons/apple-touch-icon-152x152.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="./assets/icons/apple-touch-icon-144x144.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="./assets/icons/apple-touch-icon-120x120.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="./assets/icons/apple-touch-icon-114x114.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="./assets/icons/apple-touch-icon-76x76.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="./assets/icons/apple-touch-icon-72x72.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="./assets/icons/apple-touch-icon-60x60.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="./assets/icons/apple-touch-icon-57x57.png"
+        />
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./assets/icons/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="./assets/icons/favicon-16x16.png"
+        />
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="./assets/icons/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="./assets/icons/android-chrome-512x512.png"
+        />
+
+        <link
+            rel="mask-icon"
+            href="./assets/icons/safari-pinned-tab.svg"
+            color="#5bbad5"
+        />
+
+        <link rel="manifest" href="../site.webmanifest" />
+
+        <meta
+            name="msapplication-TileImage"
+            content="./assets/icons/mstile-144x144.png"
+        />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+
+        <meta name="theme-color" content="#ffffff" />
+
+        <meta name="application-name" content="Your App Name" />
+        <meta name="msapplication-tooltip" content="Your App Tooltip" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <link rel="manifest" href="/icons/browserconfig.xml" />
+
+        <script defer src="../src/main.js"></script>
+        <meta
+            name="description"
+            content="A simple interactive calculator built with HTML, CSS, and JavaScript."
+        />
+        <meta
+            name="keywords"
+            content="calculator, interactive, HTML, CSS, JavaScript"
+        />
+        <meta name="author" content="NeosJohn" />
+    </head>
+    <body>
+        <!-- Main container for the calculator -->
+        <div id="calculatorContainer">
+            <!-- Disabled text input for result display -->
+            <span id="displayFrame" class="FrameDisplays">
+                <input
+                    type="text"
+                    id="displayInput"
+                    value=""
+                    disabled
+                    aria-label="Display result"
+                />
+                <p id="resultDisplay"></p>
+            </span>
+
+            <!-- Secondary container for additional controls -->
+            <div class="additionalControls">
+                <div id="controlPanel">
+                    <div
+                        style="
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                        "
+                    >
+                        <!-- Container for history button -->
+                        <span id="historyContainer">
+                            <button
+                                id="historyButton"
+                                aria-label="Show history"
+                            ></button>
+                            <div id="highlightedHistory"></div>
+                        </span>
+                        <!-- Container for clear history button -->
+                        <span id="clearHistoryContainer">
+                            <button
+                                id="clearHistoryButton"
+                                aria-label="Clear history"
+                            ></button>
+                            <div id="highlightedClearHistory"></div>
+                        </span>
+                    </div>
+
+                    <div id="settingsButtons">
+                        <!-- Container for status indicators -->
+                        <div class="statusIndicators">
+                            <div
+                                class="status-indicator"
+                                aria-label="Status indicator 1"
+                            ></div>
+                            <div
+                                class="status-indicator"
+                                aria-label="Status indicator 2"
+                            ></div>
+                            <div
+                                class="status-indicator"
+                                aria-label="Status indicator 3"
+                            ></div>
+                        </div>
+
+                        <!-- Toggle switch for dark/light mode -->
+                        <label class="switch">
+                            <input
+                                type="checkbox"
+                                id="darkModeToggle"
+                                aria-label="Toggle dark mode"
+                            />
+                            <span
+                                class="slider round"
+                                id="darkModeSlider"
+                                data-mode="day"
+                            ></span>
+                        </label>
+                    </div>
+                </div>
+                <div id="deleteContainer">
+                    <button class="deleteButton" aria-label="Delete">
+                        <img src="./assets/icons/delete.svg" alt="Delete" />
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calculator buttons -->
+            <div id="calculatorButtons" data-previousKeyType="">
+                <!-- Numeric and operator buttons -->
+                <button
+                    class="button clean"
+                    value="AC"
+                    tabindex="1"
+                    aria-label="Clear all"
+                >
+                    AC
+                </button>
+                <button
+                    class="button toggleSign"
+                    value="+/-"
+                    tabindex="2"
+                    aria-label="Toggle sign"
+                >
+                    +/-
+                </button>
+                <button
+                    class="button percentage"
+                    value="%"
+                    data-value="%"
+                    tabindex="3"
+                    aria-label="Percentage"
+                >
+                    %
+                </button>
+                <button
+                    class="button operator"
+                    id="divide"
+                    value="/"
+                    data-value="÷"
+                    tabindex="4"
+                    aria-label="Divide"
+                >
+                    <img src="./assets/icons/divide.svg" alt="Divide" />
+                </button>
+                <button class="button" value="7" tabindex="5" aria-label="7">
+                    7
+                </button>
+                <button class="button" value="8" tabindex="6" aria-label="8">
+                    8
+                </button>
+                <button class="button" value="9" tabindex="7" aria-label="9">
+                    9
+                </button>
+                <button
+                    class="button operator"
+                    id="multiply"
+                    value="*"
+                    data-value="x"
+                    tabindex="8"
+                    aria-label="Multiply"
+                >
+                    <img src="./assets/icons/multiply.svg" alt="Multiply" />
+                </button>
+                <button class="button" value="4" tabindex="9" aria-label="4">
+                    4
+                </button>
+                <button class="button" value="5" tabindex="10" aria-label="5">
+                    5
+                </button>
+                <button class="button" value="6" tabindex="11" aria-label="6">
+                    6
+                </button>
+                <button
+                    class="button operator"
+                    id="subtract"
+                    value="-"
+                    data-value="-"
+                    tabindex="12"
+                    aria-label="Subtract"
+                >
+                    <img src="./assets/icons/subtract.svg" alt="Subtract" />
+                </button>
+                <button class="button" value="1" tabindex="13" aria-label="1">
+                    1
+                </button>
+                <button class="button" value="2" tabindex="14" aria-label="2">
+                    2
+                </button>
+                <button class="button" value="3" tabindex="15" aria-label="3">
+                    3
+                </button>
+                <button
+                    class="button operator"
+                    id="add"
+                    value="+"
+                    data-value="+"
+                    tabindex="16"
+                    aria-label="Add"
+                >
+                    <img src="./assets/icons/add.svg" alt="Add" />
+                </button>
+                <button class="button" value="0" tabindex="17" aria-label="0">
+                    0
+                </button>
+                <button
+                    class="button decimalPoint"
+                    value="."
+                    data-value="."
+                    tabindex="18"
+                    aria-label="Decimal point"
+                >
+                    .
+                </button>
+                <button
+                    class="button parentheses"
+                    value=""
+                    data-used="false"
+                    tabindex="19"
+                    aria-label="Parentheses"
+                >
+                    ( )
+                </button>
+                <button
+                    class="button operator"
+                    id="equal"
+                    value="="
+                    data-action="equal"
+                    tabindex="20"
+                    aria-label="Equal"
+                >
+                    <img src="./assets/icons/equal.svg" alt="Equal" />
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

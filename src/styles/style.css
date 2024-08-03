@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+@font-face {
+    font-family: 'Digital7';
+    src: url('../../public/assets/fonts/digital-7-family/digital-7.regular.ttf')
+        format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --color-background-light: #e1e3de;
+    --color-background-dark: #2a2523;
+    --color-display-light: #bbb4a1;
+    --color-frame-border-light: #d1d1cc;
+    --color-frame-border-dark: #44372e;
+    --color-button-bg: #bcb3a4;
+    --color-button-text: #686350;
+    --color-equal-bg: hsl(0, 100%, 47%);
+    --color-history-bg: #77a681;
+    --color-history-light: gray;
+    --color-header-bg: black;
+    --color-header-text: white;
+    --color-td-bg: #d1d1cc;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    background-color: var(--color-background-light);
+}
+
+.bodyDarkmode {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    background-color: var(--color-background-dark);
+}
+
+#calculatorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#displayFrame {
+    height: 70px;
+    width: 190px;
+    background-color: var(--color-display-light);
+    margin-bottom: 20px;
+    border-radius: 2px;
+}
+
+.FrameDisplays {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    border-top: 10px solid var(--color-frame-border-light);
+    border-bottom: 20px solid var(--color-frame-border-light);
+    border-left: 8px solid var(--color-frame-border-light);
+    border-right: 8px solid var(--color-frame-border-light);
+}
+
+.displayFrameDark {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    border-top: 10px solid var(--color-frame-border-dark);
+    border-bottom: 20px solid var(--color-frame-border-dark);
+    border-left: 8px solid var(--color-frame-border-dark);
+    border-right: 8px solid var(--color-frame-border-dark);
+}
+
+#displayInput {
+    display: flex;
+    height: 90%;
+    background-color: var(--color-display-light);
+    width: 100%;
+    font-family: 'Digital7', Courier, monospace;
+    font-size: larger;
+    letter-spacing: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+}
+
+#resultDisplay {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    background-color: var(--color-display-light);
+    font-family: 'Digital7', Courier, monospace;
+    font-size: small;
+    letter-spacing: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#controlPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 190px;
+    margin-bottom: 10px;
+    height: fit-content;
+}
+
+#historyContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+#historyButton {
+    background-color: var(--color-history-bg);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.13);
+}
+
+#highlightedHistory {
+    border: 1px solid var(--color-header-text);
+    height: 8px;
+    border-radius: 50%;
+    width: 8px;
+}
+
+#settingsButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.statusIndicators {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.status-indicator {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: var(--color-frame-border-dark);
+    margin-right: 3px;
+}
+
+.status-indicator:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.status-indicator:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.status-indicator:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.indicatorDark {
+    background-color: var(--color-equal-bg);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 17px;
+    height: 30px;
+}
+
+#darkModeToggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-frame-border-dark);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    top: 3px;
+    background-color: var(--color-header-text);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: var(--color-equal-bg);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px hsl(0, 4%, 14%);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateY(12px);
+    -ms-transform: translateY(12px);
+    transform: translateY(12px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#deleteContainer {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.deleteButton {
+    background-color: transparent;
+    border: none;
+}
+
+#calculatorButtons {
+    display: grid;
+    grid-template-columns: 80px, 80px, 80px, 80px;
+    grid-template-rows: 80px, 80px;
+    justify-content: center;
+    grid-gap: 10px;
+    grid-template-areas:
+        'header header header header'
+        'main main main main'
+        'main main main main'
+        'main main main main'
+        'main main main main'
+        'main main main main';
+}
+
+.button {
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 20%;
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 1rem;
+}
+
+.button:active {
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2),
+        0 -2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+}
+
+.operator {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.13);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background-color: var(--color-frame-border-dark);
+}
+
+#equal {
+    background-color: var(--color-equal-bg);
+}
+
+.highlightedhistoryLight {
+    background-color: var(--color-history-light);
+    -webkit-transition: 0.2s;
+    transition: 0.4s;
+}
+
+#clearHistoryContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+#clearHistoryButton {
+    background-color: var(--color-equal-bg);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.13);
+}
+
+#highlightedClearHistory {
+    border: 1px solid var(--color-header-text);
+    height: 8px;
+    border-radius: 50%;
+    width: 8px;
+}
+
+.Bright_history_light2 {
+    background-color: var(--color-history-light);
+    -webkit-transition: 0.2s;
+    transition: 0.4s;
+}
+
+.highlightedhistoryDark {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    background-color: var(--color-header-text);
+}
+
+.First {
+    position: absolute;
+    top: 200px;
+    height: 300px;
+    width: 300px;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(--color-header-text);
+    overflow: auto;
+    cursor: grab;
+}
+
+.historyTable {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.cellStyle {
+    padding: 6px;
+}
+
+.headerRow * {
+    background-color: var(--color-header-bg);
+    color: var(--color-header-text);
+    padding: 10px;
+}
+
+.historyHeader {
+    display: flex;
+    justify-content: space-between;
+    border: 30px soid var(--color-equal-bg);
+}
+
+.closeButton {
+    background-color: transparent;
+    color: var(--color-equal-bg);
+    border: none;
+}
+
+.tablebodyRow:nth-last-of-type(even) {
+    background-color: var(--color-td-bg);
+}
+
+.tableDarkmode {
+    margin-top: 20px;
+    background-color: var(--color-header-text);
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.buttonclearFilled {
+    background-color: var(--color-equal-bg);
+}
