@@ -2,7 +2,9 @@
 
 @font-face {
     font-family: 'Digital7';
-    src: url('../../public/assets/fonts/digital-7-family/digital-7.regular.ttf')
+    /* src: url('../../public/assets/fonts/digital-7-family/digital-7.regular.ttf')
+        format('truetype'); */
+    src: url('./assets/fonts/digital-7-family/digital-7.regular.ttf')
         format('truetype');
     font-weight: normal;
     font-style: normal;
